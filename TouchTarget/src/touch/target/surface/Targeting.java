@@ -13,7 +13,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 public class Targeting {
-	//store the screen size for scaling objects
+	// store the screen size for scaling objects
 	public int screenWidth, screenHeight;
 	public float STROKE_WIDTH = 10;
 
@@ -25,31 +25,32 @@ public class Targeting {
 
 	public Paint targetHomingPaint = new Paint();
 	public Paint targetObjectPaint = new Paint();
-	
-	//tell the factory to create version c of UpdatePhysics
+
+	// tell the factory to create version c of UpdatePhysics
 	String currentPhysics = "c";
 	UpdatePhysics updatePhysics = UpdatePhysicsFactory
 			.createUpdatePhysics(currentPhysics);
 
-	//tell the factory to create version a of Draw
+	// tell the factory to create version a of Draw
 	String currentDraw = "a";
 	Draw draw = DrawFactory.createDraw(currentDraw);
 
-	//the starting pixel is the scaled point from the origin the homing target starts at
+	// the starting pixel is the scaled point from the origin the homing target
+	// starts at
 	public int startTargetPixel;
 
 	// target class is the homing target and homing object
 	public class Target {
-		//Rect will be drawn to the screen
+		// Rect will be drawn to the screen
 		public Rect rect;
 
-		//constructor creates a new target
+		// constructor creates a new target
 		public Target() {
 			rect = new Rect();
 		}
 	}
 
-	//the moving  
+	// the moving
 	public Target homingRect = new Target();
 	public Target targetRect = new Target();
 
@@ -107,17 +108,17 @@ public class Targeting {
 		}
 	}
 
-private void initTargets() {
-	homingRect.rect.top = 0;
-	homingRect.rect.left = 0;
-	homingRect.rect.right = screenWidth - 1;
-	homingRect.rect.bottom = screenHeight - 1;
+	private void initTargets() {
+		homingRect.rect.top = 0;
+		homingRect.rect.left = 0;
+		homingRect.rect.right = screenWidth - 1;
+		homingRect.rect.bottom = screenHeight - 1;
 
-	targetRect.rect.top = startTargetPixel;
-	targetRect.rect.left = startTargetPixel;
-	targetRect.rect.right = screenWidth - startTargetPixel - 1;
-	targetRect.rect.bottom = screenHeight - startTargetPixel - 1;
-}
+		targetRect.rect.top = startTargetPixel;
+		targetRect.rect.left = startTargetPixel;
+		targetRect.rect.right = screenWidth - startTargetPixel - 1;
+		targetRect.rect.bottom = screenHeight - startTargetPixel - 1;
+	}
 
 	public void menuRestart() {
 		currentPhysics = "c";
