@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Touch Demo</string>
+    <string name="message_text">Tap Screen when boxes\nare overlapping</string>
+    <string name="restart">Restart?</string>
+
+</resources>
