@@ -15,8 +15,8 @@ public class DrawAImpl implements Draw {
 		else
 			canvas.drawColor(Color.RED);
 
-		canvas.drawRect(targeting.homeTarget.rect, targeting.targetObjectPaint);
-		canvas.drawRect(targeting.homingTarget.rect,
+		canvas.drawRect(targeting.targetRect.rect, targeting.targetObjectPaint);
+		canvas.drawRect(targeting.homingRect.rect,
 				targeting.targetHomingPaint);
 	}
 }

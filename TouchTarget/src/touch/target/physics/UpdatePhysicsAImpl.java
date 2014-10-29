@@ -7,11 +7,11 @@ public class UpdatePhysicsAImpl implements UpdatePhysics {
 	@Override
 	public void updatePhysics(Targeting targeting) {
 		// called if application and thread are running
-		if (targeting.isTouched && !targeting.touchUpdated) {
-			targeting.touchUpdated = true;
+		if (targeting.isTouched && !targeting.isTouchUpdated) {
+			targeting.isTouchUpdated = true;
 
-			if (targeting.homingTarget.rect.left > (targeting.homeTarget.rect.left - targeting.STROKE_WIDTH)
-					&& (targeting.homingTarget.rect.left < targeting.homeTarget.rect.left
+			if (targeting.homingRect.rect.left > (targeting.targetRect.rect.left - targeting.STROKE_WIDTH)
+					&& (targeting.homingRect.rect.left < targeting.targetRect.rect.left
 							+ targeting.STROKE_WIDTH)) {
 				targeting.isTouchedOnTime = true;
 				targeting.isRoundOver = true;
@@ -21,24 +21,24 @@ public class UpdatePhysicsAImpl implements UpdatePhysics {
 			}
 		}
 
-		targeting.homingTarget.rect.left++;
-		targeting.homingTarget.rect.top++;
-		targeting.homingTarget.rect.right--;
-		targeting.homingTarget.rect.bottom--;
+		targeting.homingRect.rect.left++;
+		targeting.homingRect.rect.top++;
+		targeting.homingRect.rect.right--;
+		targeting.homingRect.rect.bottom--;
 
-		if (targeting.homingTarget.rect.left >= targeting.homingTarget.rect.right
-				|| targeting.homingTarget.rect.top >= targeting.homingTarget.rect.bottom) {
+		if (targeting.homingRect.rect.left >= targeting.homingRect.rect.right
+				|| targeting.homingRect.rect.top >= targeting.homingRect.rect.bottom) {
 			targeting.isTouchedOnTime = false;
 			targeting.isTouched = false;
-			targeting.touchUpdated = false;
+			targeting.isTouchUpdated = false;
 			targeting.isRoundOver = false;
 
-			targeting.homingTarget.rect.top = 0;
-			targeting.homingTarget.rect.left = 0;
+			targeting.homingRect.rect.top = 0;
+			targeting.homingRect.rect.left = 0;
 			
 			//keep it visible so minus one (stroke_width)
-			targeting.homingTarget.rect.right = targeting.screenWidth - 1;
-			targeting.homingTarget.rect.bottom = targeting.screenHeight;
+			targeting.homingRect.rect.right = targeting.screenWidth - 1;
+			targeting.homingRect.rect.bottom = targeting.screenHeight;
 		}
 	}
 

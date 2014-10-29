@@ -13,37 +13,45 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 public class Targeting {
-
+	//store the screen size for scaling objects
 	public int screenWidth, screenHeight;
-	public Paint targetHomingPaint = new Paint();
-	public Paint targetObjectPaint = new Paint();
 	public float STROKE_WIDTH = 10;
+
 	public boolean isTouchedOnTime;
 	public boolean isTouched;
 	public boolean isRoundOver;
-	public boolean touchUpdated;
+	public boolean isTouchUpdated;
 	public boolean isTouchTimingSet;
 
+	public Paint targetHomingPaint = new Paint();
+	public Paint targetObjectPaint = new Paint();
+	
+	//tell the factory to create version c of UpdatePhysics
 	String currentPhysics = "c";
 	UpdatePhysics updatePhysics = UpdatePhysicsFactory
 			.createUpdatePhysics(currentPhysics);
 
+	//tell the factory to create version a of Draw
 	String currentDraw = "a";
 	Draw draw = DrawFactory.createDraw(currentDraw);
 
+	//the starting pixel is the scaled point from the origin the homing target starts at
 	public int startTargetPixel;
 
-	// current target class is the homing target and home target
+	// target class is the homing target and homing object
 	public class Target {
+		//Rect will be drawn to the screen
 		public Rect rect;
 
+		//constructor creates a new target
 		public Target() {
 			rect = new Rect();
 		}
 	}
 
-	public Target homingTarget = new Target();
-	public Target homeTarget = new Target();
+	//the moving  
+	public Target homingRect = new Target();
+	public Target targetRect = new Target();
 
 	public Targeting() {
 		targetHomingPaint.setColor(Color.WHITE);
@@ -80,7 +88,7 @@ public class Targeting {
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
 				// touch event has happened
 				isTouched = true;
-				touchUpdated = false;
+				isTouchUpdated = false;
 				return false;
 			}
 		}
@@ -100,15 +108,15 @@ public class Targeting {
 	}
 
 private void initTargets() {
-	homingTarget.rect.top = 0;
-	homingTarget.rect.left = 0;
-	homingTarget.rect.right = screenWidth - 1;
-	homingTarget.rect.bottom = screenHeight - 1;
+	homingRect.rect.top = 0;
+	homingRect.rect.left = 0;
+	homingRect.rect.right = screenWidth - 1;
+	homingRect.rect.bottom = screenHeight - 1;
 
-	homeTarget.rect.top = startTargetPixel;
-	homeTarget.rect.left = startTargetPixel;
-	homeTarget.rect.right = screenWidth - startTargetPixel - 1;
-	homeTarget.rect.bottom = screenHeight - startTargetPixel - 1;
+	targetRect.rect.top = startTargetPixel;
+	targetRect.rect.left = startTargetPixel;
+	targetRect.rect.right = screenWidth - startTargetPixel - 1;
+	targetRect.rect.bottom = screenHeight - startTargetPixel - 1;
 }
 
 	public void menuRestart() {
@@ -123,7 +131,7 @@ private void initTargets() {
 		isTouched = false;
 		isTouchedOnTime = false;
 		isTouchTimingSet = false;
-		touchUpdated = false;
+		isTouchUpdated = false;
 		isRoundOver = false;
 	}
 }
