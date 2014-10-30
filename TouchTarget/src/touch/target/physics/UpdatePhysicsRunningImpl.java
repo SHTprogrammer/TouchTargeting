@@ -2,14 +2,26 @@ package touch.target.physics;
 
 import touch.target.surface.Targeting;
 
+/**
+ * 
+ * Our running physics implementation checks the flag for user touch and will
+ * evaluate if its on time or not. It uses the Stroke width of the objects as a
+ * buffer.
+ * 
+ * @author Rick
+ *
+ */
 public class UpdatePhysicsRunningImpl implements UpdatePhysics {
 
 	/**
 	 * Used to tell the targeting class that the current set of actions can be
 	 * reset is over
 	 */
-	boolean isResetable;
+	boolean isToBeReset;
 
+	/**
+	 * Called to check for on time or off time presses per cycle.
+	 */
 	@Override
 	public void updatePhysics(Targeting targeting) {
 		// handle user touch
@@ -32,7 +44,7 @@ public class UpdatePhysicsRunningImpl implements UpdatePhysics {
 
 				// register the current round to be over
 				if (targeting.targetRect.rect.left > targeting.screenWidth / 2) {
-					isResetable = true;
+					isToBeReset = true;
 				}
 			} else {
 				// count as missed and end round
@@ -81,8 +93,8 @@ public class UpdatePhysicsRunningImpl implements UpdatePhysics {
 	}
 
 	@Override
-	public boolean getIsResetable() {
+	public boolean getIsToBeReset() {
 		// TODO Auto-generated method stub
-		return isResetable;
+		return isToBeReset;
 	}
 }

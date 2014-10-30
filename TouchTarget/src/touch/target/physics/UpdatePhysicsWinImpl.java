@@ -12,7 +12,7 @@ public class UpdatePhysicsWinImpl implements UpdatePhysics {
 	}
 
 	@Override
-	public boolean getIsResetable() {
+	public boolean getIsToBeReset() {
 		// TODO Auto-generated method stub
 		return over;
 	}

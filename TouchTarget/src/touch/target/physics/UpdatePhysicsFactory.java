@@ -1,9 +1,14 @@
 package touch.target.physics;
 
+/**
+ * 
+ * The update physics factory will return to the application the physics for the
+ * game to be running or in the win state.
+ * 
+ * @author Rick
+ *
+ */
 public class UpdatePhysicsFactory {
-
-	UpdatePhysicsFactory() {
-	};
 
 	public static UpdatePhysics createUpdatePhysics(String type) {
 		if (type.equals("running"))

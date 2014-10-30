@@ -96,10 +96,14 @@ public class Targeting {
 		return true;
 	}
 
+	/**
+	 * update the current objects, reset after screen cycle has ended
+	 */
 	public void updatePhysics() {
 		updatePhysics.updatePhysics(this);
 
-		if (updatePhysics.getIsResetable()) {
+		// the moving homing rectangle has minimized completely
+		if (updatePhysics.getIsToBeReset()) {
 			currentPhysics = "win";
 			updatePhysics = UpdatePhysicsFactory
 					.createUpdatePhysics(currentPhysics);
@@ -108,6 +112,10 @@ public class Targeting {
 		}
 	}
 
+	/**
+	 * The homing target just inside the bounds of the screen and the target
+	 * bounds are initialized based on a scaled starting point.
+	 */
 	private void initTargets() {
 		homingRect.rect.top = 0;
 		homingRect.rect.left = 0;
@@ -120,6 +128,10 @@ public class Targeting {
 		targetRect.rect.bottom = screenHeight - startTargetPixel - 1;
 	}
 
+	/**
+	 * The user may have pressed the menu restart button this resets the factory
+	 * pattern created classes for physics and draw methods.
+	 */
 	public void menuRestart() {
 		currentPhysics = "running";
 		updatePhysics = UpdatePhysicsFactory

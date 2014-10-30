@@ -13,7 +13,7 @@ import android.graphics.Color;
 public class DrawRunningImpl implements Draw {
 	@Override
 	public void draw(Canvas canvas, Targeting targeting) {
-		// draw based on targeting state
+		// draw based on targeting state before or after press
 		if (!targeting.isTouchTimingSet)
 			canvas.drawColor(Color.BLUE);
 		else if (targeting.isTouchedOnTime)
