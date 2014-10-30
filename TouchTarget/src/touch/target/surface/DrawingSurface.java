@@ -22,7 +22,7 @@ public class DrawingSurface extends SurfaceView implements
 		SurfaceHolder.Callback {
 
 	/**
-	 * The context object allows acces to the resources needed and also contains
+	 * The context object allows access to the resources needed and also contains
 	 * information about the application.
 	 */
 	Context context;

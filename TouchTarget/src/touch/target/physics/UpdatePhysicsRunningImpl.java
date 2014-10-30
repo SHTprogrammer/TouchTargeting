@@ -92,6 +92,10 @@ public class UpdatePhysicsRunningImpl implements UpdatePhysics {
 		}
 	}
 
+	/**
+	 * If the homing rectangle has minimized completely it is the end of the
+	 * round.
+	 */
 	@Override
 	public boolean getIsToBeReset() {
 		// TODO Auto-generated method stub

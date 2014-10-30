@@ -12,48 +12,100 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
+/**
+ * 
+ * The targeting class is used to create our two target objects the homing
+ * target and target objects.
+ * 
+ * @author Rick
+ *
+ */
 public class Targeting {
-	// store the screen size for scaling objects
+	/**
+	 * store the screen size for scaling objects
+	 */
 	public int screenWidth, screenHeight;
+
+	/**
+	 * Allows for developer to change the width of the target.
+	 */
 	public float STROKE_WIDTH = 10;
 
+	/**
+	 * Flags for the logic.
+	 */
 	public boolean isTouchedOnTime;
 	public boolean isTouched;
 	public boolean isRoundOver;
 	public boolean isTouchUpdated;
 	public boolean isTouchTimingSet;
 
+	/**
+	 * Our target paint objects.
+	 */
 	public Paint targetHomingPaint = new Paint();
 	public Paint targetObjectPaint = new Paint();
 
-	// tell the factory to create version c of UpdatePhysics
+	/**
+	 * Used to contain the current physics class object.
+	 */
 	String currentPhysics = "running";
+
+	/**
+	 * Our update physics object is used to create the physics at the time that
+	 * we need them.
+	 */
 	UpdatePhysics updatePhysics = UpdatePhysicsFactory
 			.createUpdatePhysics(currentPhysics);
 
-	// tell the factory to create version a of Draw
+	/**
+	 * Contains the title to the current Draw class.
+	 */
 	String currentDraw = "running";
+
+	/**
+	 * Our draw object is used to create the draw class at the time that we need
+	 * them.
+	 */
 	Draw draw = DrawFactory.createDraw(currentDraw);
 
-	// the starting pixel is the scaled point from the origin the homing target
-	// starts at
+	/**
+	 * The starting pixel is the scaled point from the origin to the target
+	 * object.
+	 */
 	public int startTargetPixel;
 
-	// target class is the homing target and homing object
-	public class Target {
-		// Rect will be drawn to the screen
+	/**
+	 * 
+	 * Class that holds the rect object that contains the bounds of the target.
+	 * 
+	 * @author Rick
+	 *
+	 */
+	public class MyRect {
+		/**
+		 * will be used to determine the draw pixels of the object.
+		 */
 		public Rect rect;
 
-		// constructor creates a new target
-		public Target() {
+		/**
+		 * Create a new Rect when you create a new Target.
+		 */
+		public MyRect() {
 			rect = new Rect();
 		}
 	}
 
-	// the moving
-	public Target homingRect = new Target();
-	public Target targetRect = new Target();
+	/**
+	 * The homing object that will pass over the target.
+	 */
+	public MyRect homingRect = new MyRect();
+	public MyRect targetRect = new MyRect();
 
+	/**
+	 * When creating a new Targeting class we crete the Paint objects we will
+	 * need.
+	 */
 	public Targeting() {
 		targetHomingPaint.setColor(Color.WHITE);
 		targetHomingPaint.setStyle(Style.STROKE);
@@ -64,24 +116,47 @@ public class Targeting {
 		targetObjectPaint.setStrokeWidth(STROKE_WIDTH);
 	}
 
+	/**
+	 * 
+	 * Calling draw will hand the work off to the Draw class that is implemented
+	 * at that time.
+	 * 
+	 * @param canvas
+	 *            our drawing surface's canvas.
+	 */
 	public void draw(Canvas canvas) {
 		draw.draw(canvas, this);
 	}
 
+	/**
+	 * 
+	 * On start of the application we can set the screen height and widtht.
+	 * 
+	 * @param holder
+	 *            our surface holder object.
+	 * @param height
+	 *            height of our screen in pixels.
+	 * @param width
+	 *            width of our screen in pixels.
+	 */
 	public void surfaceChanged(SurfaceHolder holder, int height, int width) {
 		// called when the surface is created for the thread
 		screenHeight = height;
 		screenWidth = width;
 
-		// set the initial target location and increment amount
+		// by scaling the startTargetPixel from the screen width we can make
+		// sure that
+		// the start target pixel is in a similar location on different devices.
 		startTargetPixel = screenWidth / 20;
 
 		// place targets
-		initTargets();
+		initMyRects();
 	}
 
 	/**
-	 * Perform click needs to be implemented
+	 * If the application is in a state to accept touch events, handle them
+	 * here. Returning false means until the user presses down the handling is
+	 * over, returning true means the touch events will keep being fed to here.
 	 */
 	public boolean onTouch(MotionEvent event) {
 		// touch tracks the life cycle of the touch event
@@ -97,7 +172,7 @@ public class Targeting {
 	}
 
 	/**
-	 * update the current objects, reset after screen cycle has ended
+	 * Update the current objects, reset after screen cycle has ended.
 	 */
 	public void updatePhysics() {
 		updatePhysics.updatePhysics(this);
@@ -116,7 +191,7 @@ public class Targeting {
 	 * The homing target just inside the bounds of the screen and the target
 	 * bounds are initialized based on a scaled starting point.
 	 */
-	private void initTargets() {
+	private void initMyRects() {
 		homingRect.rect.top = 0;
 		homingRect.rect.left = 0;
 		homingRect.rect.right = screenWidth - 1;
@@ -133,14 +208,17 @@ public class Targeting {
 	 * pattern created classes for physics and draw methods.
 	 */
 	public void menuRestart() {
+		// reset our factory methods
 		currentPhysics = "running";
 		updatePhysics = UpdatePhysicsFactory
 				.createUpdatePhysics(currentPhysics);
 		currentDraw = "running";
 		draw = DrawFactory.createDraw(currentDraw);
 
-		initTargets();
+		// reset our MyRect objects
+		initMyRects();
 
+		//reset our flags for the targeting class
 		isTouched = false;
 		isTouchedOnTime = false;
 		isTouchTimingSet = false;
