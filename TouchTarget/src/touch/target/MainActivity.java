@@ -98,7 +98,7 @@ public class MainActivity extends ActionBarActivity {
 			}
 		});
 
-		Animation anim2 = AnimationUtils.loadAnimation(this, R.anim.warp_out);
+		Animation anim2 = AnimationUtils.loadAnimation(this, R.anim.warp_in);
 		anim2.reset();
 
 		drawingSurface.clearAnimation();
