@@ -67,7 +67,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	/**
-	 * 
+	 * Begin animations here
 	 */
 	@Override
 	protected void onResume() {
@@ -106,7 +106,7 @@ public class MainActivity extends ActionBarActivity {
 
 		drawingSurface.messageTextView.clearAnimation();
 		drawingSurface.messageTextView.startAnimation(anim2);
-		
+
 		drawingSurface.onResume();
 	}
 
