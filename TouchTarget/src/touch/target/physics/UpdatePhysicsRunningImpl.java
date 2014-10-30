@@ -2,7 +2,7 @@ package touch.target.physics;
 
 import touch.target.surface.Targeting;
 
-public class UpdatePhysicsCImpl implements UpdatePhysics {
+public class UpdatePhysicsRunningImpl implements UpdatePhysics {
 
 	/**
 	 * Used to tell the targeting class that the current set of actions can be

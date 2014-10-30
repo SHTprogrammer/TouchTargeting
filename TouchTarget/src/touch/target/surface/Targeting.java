@@ -27,12 +27,12 @@ public class Targeting {
 	public Paint targetObjectPaint = new Paint();
 
 	// tell the factory to create version c of UpdatePhysics
-	String currentPhysics = "c";
+	String currentPhysics = "running";
 	UpdatePhysics updatePhysics = UpdatePhysicsFactory
 			.createUpdatePhysics(currentPhysics);
 
 	// tell the factory to create version a of Draw
-	String currentDraw = "a";
+	String currentDraw = "running";
 	Draw draw = DrawFactory.createDraw(currentDraw);
 
 	// the starting pixel is the scaled point from the origin the homing target
@@ -121,10 +121,10 @@ public class Targeting {
 	}
 
 	public void menuRestart() {
-		currentPhysics = "c";
+		currentPhysics = "running";
 		updatePhysics = UpdatePhysicsFactory
 				.createUpdatePhysics(currentPhysics);
-		currentDraw = "a";
+		currentDraw = "running";
 		draw = DrawFactory.createDraw(currentDraw);
 
 		initTargets();

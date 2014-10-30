@@ -4,10 +4,16 @@ import touch.target.surface.Targeting;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-public class DrawAImpl implements Draw {
+/**
+ * Implementation of the draw method, draws the background and the objects.
+ * 
+ * @author Rick
+ *
+ */
+public class DrawRunningImpl implements Draw {
 	@Override
 	public void draw(Canvas canvas, Targeting targeting) {
-		// TODO Auto-generated method stub
+		// draw based on targeting state
 		if (!targeting.isTouchTimingSet)
 			canvas.drawColor(Color.BLUE);
 		else if (targeting.isTouchedOnTime)
@@ -15,8 +21,8 @@ public class DrawAImpl implements Draw {
 		else
 			canvas.drawColor(Color.RED);
 
+		// draw on the canvas the two rectangle objects.
 		canvas.drawRect(targeting.targetRect.rect, targeting.targetObjectPaint);
-		canvas.drawRect(targeting.homingRect.rect,
-				targeting.targetHomingPaint);
+		canvas.drawRect(targeting.homingRect.rect, targeting.targetHomingPaint);
 	}
 }
