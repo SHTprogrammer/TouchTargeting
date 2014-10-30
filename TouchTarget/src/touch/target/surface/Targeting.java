@@ -179,10 +179,10 @@ public class Targeting {
 
 		// the moving homing rectangle has minimized completely
 		if (updatePhysics.getIsToBeReset()) {
-			currentPhysics = "win";
+			currentPhysics = "end";
 			updatePhysics = UpdatePhysicsFactory
 					.createUpdatePhysics(currentPhysics);
-			currentDraw = "win";
+			currentDraw = "end";
 			draw = DrawFactory.createDraw(currentDraw);
 		}
 	}

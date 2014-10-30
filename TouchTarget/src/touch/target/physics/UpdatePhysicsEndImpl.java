@@ -2,7 +2,7 @@ package touch.target.physics;
 
 import touch.target.surface.Targeting;
 
-public class UpdatePhysicsWinImpl implements UpdatePhysics {
+public class UpdatePhysicsEndImpl implements UpdatePhysics {
 
 	boolean over;
 

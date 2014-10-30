@@ -12,7 +12,7 @@ public class DrawFactory {
 		if (currentDraw.equals("running"))
 			return new DrawRunningImpl();
 		else if (currentDraw.equals("end"))
-			return new DrawWinImpl();
+			return new DrawEndImpl();
 		else
 			return null;
 	}

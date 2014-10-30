@@ -11,7 +11,7 @@ import android.graphics.Color;
  * @author Rick
  *
  */
-public class DrawWinImpl implements Draw {
+public class DrawEndImpl implements Draw {
 
 	/**
 	 * the draw class must be called if its implementing Draw

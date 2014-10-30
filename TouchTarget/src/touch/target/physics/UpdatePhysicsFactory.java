@@ -13,8 +13,8 @@ public class UpdatePhysicsFactory {
 	public static UpdatePhysics createUpdatePhysics(String type) {
 		if (type.equals("running"))
 			return new UpdatePhysicsRunningImpl();
-		if (type.equals("win"))
-			return new UpdatePhysicsWinImpl();
+		if (type.equals("end"))
+			return new UpdatePhysicsEndImpl();
 		else
 			return null;
 	}
