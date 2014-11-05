@@ -22,8 +22,8 @@ public class DrawingSurface extends SurfaceView implements
 		SurfaceHolder.Callback {
 
 	/**
-	 * The context object allows access to the resources needed and also contains
-	 * information about the application.
+	 * The context object allows access to the resources needed and also
+	 * contains information about the application.
 	 */
 	Context context;
 
@@ -228,7 +228,6 @@ public class DrawingSurface extends SurfaceView implements
 	 * targeting.
 	 */
 	public void menuRestart() {
-		// restart based on menu select by user
 		targeting.menuRestart();
 	}
 
